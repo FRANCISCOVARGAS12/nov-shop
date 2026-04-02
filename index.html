@@ -174,15 +174,6 @@
             gap:clamp(2rem,6vw,6rem); align-items:start;
             border-top:1px solid var(--border);
         }
-        @media(max-width:700px) {
-            #product-detail { grid-template-columns:1fr; }
-            .pd-media {
-                position:relative;
-                top:0;
-                aspect-ratio:4/3;
-                max-height:60vw;
-            }
-        }
 
         .pd-media {
             position:sticky; top:100px; aspect-ratio:3/4;
@@ -191,6 +182,17 @@
         }
         .pd-media img { width:100%; height:100%; object-fit:cover; transition:opacity .5s; }
         .placeholder-img { font-family:'Cormorant Garamond',serif; font-size:1rem; color:var(--muted); letter-spacing:.2em; text-align:center; padding:2rem; }
+
+        /* REGLAS PARA MÓVIL (CORREGIDAS) */
+        @media(max-width:700px) {
+            #product-detail { grid-template-columns:1fr; }
+            .pd-media {
+                position:relative;
+                top:0;
+                aspect-ratio:1/1;
+                max-height:none;
+            }
+        }
 
         .pd-info  { display:flex; flex-direction:column; gap:2rem; }
         .pd-brand { font-size:.62rem; letter-spacing:.42em; text-transform:uppercase; color:var(--accent); }
@@ -285,7 +287,6 @@
     </nav>
 </header>
 
-<!-- ── HERO ── -->
 <section id="hero">
     <p class="hero-tag">Temporada 2026 — Orizaba, Veracruz</p>
     <h1 class="hero-h1">Boss<br><em>Mint</em></h1>
@@ -296,12 +297,8 @@
     </div>
 </section>
 
-<!-- ══════════════════════════════════════
-     VISOR 360° INTERACTIVO
-══════════════════════════════════════ -->
 <section id="viewer-section">
 
-    <!-- Etiqueta izquierda -->
     <div class="viewer-label-left">
         <p class="vl-tag">Material</p>
         <span class="vl-line"></span>
@@ -309,12 +306,10 @@
         <p class="vl-body">380 g/m² · Tacto premium<br>Interior afelpado suave</p>
     </div>
 
-    <!-- Visor central -->
     <div id="viewer-wrap">
         <span id="angle-badge">Vista: Frente</span>
         <img id="viewer-img" src="boos_frente.png" alt="Sudadera BOSS 360" draggable="false" />
         <div id="drag-hint">
-            <!-- ícono arrastre -->
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                 <path d="M8 9l-4 4 4 4M16 9l4 4-4 4"/>
             </svg>
@@ -322,7 +317,6 @@
         </div>
     </div>
 
-    <!-- Etiqueta derecha -->
     <div class="viewer-label-right">
         <p class="vl-tag">Acabados</p>
         <span class="vl-line"></span>
@@ -332,7 +326,6 @@
 
 </section>
 
-<!-- ── PRODUCT DETAIL ── -->
 <section id="product-detail">
     <div class="pd-media" id="pd-media">
         <div class="placeholder-img" id="placeholder-txt">Cargando…</div>
@@ -372,7 +365,6 @@
     </div>
 </section>
 
-<!-- ── CATÁLOGO ── -->
 <section id="catalogo">
     <div class="cat-header">
         <h2 class="cat-title">Toda la <em>Colección</em></h2>
