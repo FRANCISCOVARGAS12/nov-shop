@@ -3,64 +3,60 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NØV SHOP — Colección</title>
-
+    <title>BAD BOYS — Colección</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-
     <style>
         *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-
         :root {
-            --white:  #FFFFFF;
-            --off:    #F7F6F3;
-            --ink:    #0D0D0D;
-            --muted:  #8A8880;
-            --border: rgba(0,0,0,0.09);
-            --accent: #B5A28A;
-            --mint:   #A8C4B5;
-            --wa:     #25D366;
-            --radius: 6px;
-            --gap:    clamp(1.2rem, 4vw, 3.5rem);
+            --black:   #080808;
+            --dark:    #111111;
+            --card:    #161616;
+            --white:   #FFFFFF;
+            --off:     #AAAAAA;
+            --border:  rgba(255,255,255,0.07);
+            --accent:  #FFFFFF;
+            --wa:      #25D366;
+            --radius:  4px;
+            --gap:     clamp(1.2rem, 4vw, 3.5rem);
         }
-
         html { scroll-behavior: smooth; }
-        body { font-family:'DM Sans',sans-serif; background:var(--white); color:var(--ink); overflow-x:hidden; cursor:none; }
+        body { font-family:'DM Sans',sans-serif; background:var(--black); color:var(--white); overflow-x:hidden; cursor:none; }
 
-        #cur   { width:9px; height:9px; background:var(--ink); border-radius:50%; position:fixed; top:0; left:0; pointer-events:none; z-index:9999; mix-blend-mode:difference; }
-        #cur-r { width:34px; height:34px; border:1px solid var(--ink); border-radius:50%; position:fixed; top:0; left:0; pointer-events:none; z-index:9998; mix-blend-mode:difference; transition:width .2s,height .2s; }
+        /* ── CURSOR ── */
+        #cur   { width:8px; height:8px; background:var(--white); border-radius:50%; position:fixed; top:0; left:0; pointer-events:none; z-index:9999; mix-blend-mode:difference; }
+        #cur-r { width:32px; height:32px; border:1px solid rgba(255,255,255,.5); border-radius:50%; position:fixed; top:0; left:0; pointer-events:none; z-index:9998; transition:width .2s,height .2s; }
 
         /* ── LOADER ── */
-        #loader { position:fixed; inset:0; background:var(--white); z-index:8000; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1.4rem; }
-        .ld-logo  { font-family:'Cormorant Garamond',serif; font-weight:300; font-size:2.2rem; letter-spacing:.55em; text-transform:uppercase; }
-        .ld-track { width:160px; height:1px; background:rgba(0,0,0,.1); overflow:hidden; }
-        .ld-fill  { height:100%; width:0%; background:var(--accent); transition:width .1s linear; }
-        .ld-txt   { font-size:.62rem; letter-spacing:.28em; color:var(--muted); text-transform:uppercase; }
+        #loader { position:fixed; inset:0; background:var(--black); z-index:8000; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1.4rem; }
+        .ld-logo  { font-family:'Bebas Neue',sans-serif; font-size:3.5rem; letter-spacing:.3em; color:var(--white); }
+        .ld-track { width:160px; height:1px; background:rgba(255,255,255,.1); overflow:hidden; }
+        .ld-fill  { height:100%; width:0%; background:var(--white); transition:width .1s linear; }
+        .ld-txt   { font-size:.6rem; letter-spacing:.3em; color:var(--off); text-transform:uppercase; }
 
         /* ── HEADER ── */
-        header { position:fixed; top:0; left:0; right:0; z-index:500; display:flex; align-items:center; justify-content:space-between; padding:1.4rem var(--gap); background:transparent; transition:background .4s,backdrop-filter .4s; }
-        header.scrolled { background:rgba(255,255,255,.88); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); }
-        .logo    { font-family:'Cormorant Garamond',serif; font-weight:300; font-size:1.1rem; letter-spacing:.38em; text-transform:uppercase; text-decoration:none; color:var(--ink); }
-        .logo em { font-style:italic; color:var(--accent); }
+        header { position:fixed; top:0; left:0; right:0; z-index:500; display:flex; align-items:center; justify-content:space-between; padding:1.4rem var(--gap); background:transparent; transition:background .4s; }
+        header.scrolled { background:rgba(8,8,8,.92); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); }
+        .logo { font-family:'Bebas Neue',sans-serif; font-size:1.3rem; letter-spacing:.25em; text-decoration:none; color:var(--white); }
+        .logo span { color:var(--off); }
         nav   { display:flex; gap:1.8rem; }
-        nav a { font-size:.7rem; letter-spacing:.2em; text-transform:uppercase; text-decoration:none; color:var(--muted); transition:color .25s; }
-        nav a:hover { color:var(--ink); }
+        nav a { font-size:.68rem; letter-spacing:.2em; text-transform:uppercase; text-decoration:none; color:var(--off); transition:color .25s; }
+        nav a:hover { color:var(--white); }
 
-        #prog { position:fixed; bottom:0; left:0; height:2px; width:0%; background:linear-gradient(90deg,var(--mint),var(--accent)); z-index:600; }
+        /* ── PROGRESS BAR ── */
+        #prog { position:fixed; bottom:0; left:0; height:1px; width:0%; background:var(--white); z-index:600; }
 
         /* ── HERO ── */
         #hero { height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; padding-bottom:6vh; text-align:center; position:relative; z-index:2; }
-        .hero-tag { font-size:.63rem; letter-spacing:.42em; text-transform:uppercase; color:var(--accent); margin-bottom:1rem; opacity:0; transform:translateY(12px); }
-        .hero-h1  { font-family:'Cormorant Garamond',serif; font-weight:300; font-size:clamp(3.5rem,10vw,8.5rem); line-height:.92; color:var(--ink); opacity:0; transform:translateY(22px); }
-        .hero-h1 em { font-style:italic; color:var(--mint); }
-        .hero-sub { font-size:.75rem; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); margin-top:1.4rem; opacity:0; transform:translateY(10px); }
+        .hero-tag { font-size:.6rem; letter-spacing:.45em; text-transform:uppercase; color:var(--off); margin-bottom:1rem; opacity:0; transform:translateY(12px); }
+        .hero-h1  { font-family:'Bebas Neue',sans-serif; font-size:clamp(5rem,15vw,13rem); line-height:.88; letter-spacing:.05em; color:var(--white); opacity:0; transform:translateY(22px); }
+        .hero-sub { font-size:.72rem; letter-spacing:.22em; text-transform:uppercase; color:var(--off); margin-top:1.6rem; opacity:0; transform:translateY(10px); }
         .scroll-hint { margin-top:3rem; display:flex; flex-direction:column; align-items:center; gap:.5rem; opacity:0; }
-        .scroll-hint span { font-size:.58rem; letter-spacing:.32em; text-transform:uppercase; color:var(--muted); }
-        .s-line { width:1px; height:46px; background:linear-gradient(to bottom,var(--accent),transparent); animation:ln 1.9s ease-in-out infinite; }
+        .scroll-hint span { font-size:.56rem; letter-spacing:.32em; text-transform:uppercase; color:var(--off); }
+        .s-line { width:1px; height:46px; background:linear-gradient(to bottom,var(--white),transparent); animation:ln 1.9s ease-in-out infinite; }
         @keyframes ln {
             0%   { transform:scaleY(0); transform-origin:top; }
             50%  { transform:scaleY(1); transform-origin:top; }
@@ -72,196 +68,162 @@
            VISOR 360°
         ══════════════════════════════════════ */
         #viewer-section {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--white);
-            position: relative;
-            overflow: hidden;
+            height:100vh;
+            display:flex; align-items:center; justify-content:center;
+            background:var(--dark);
+            position:relative; overflow:hidden;
         }
-
-        #viewer-wrap {
-            position: relative;
-            width: min(70vh, 90vw);
-            aspect-ratio: 1 / 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* imagen activa del 360 */
-        #viewer-img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            user-select: none;
-            -webkit-user-drag: none;
-            pointer-events: none;
-            transition: opacity .08s;
-        }
-
-        /* hint de arrastre */
-        #drag-hint {
-            position: absolute;
-            bottom: -2.8rem;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            align-items: center;
-            gap: .5rem;
-            font-size: .62rem;
-            letter-spacing: .28em;
-            text-transform: uppercase;
-            color: var(--muted);
-            white-space: nowrap;
-            opacity: 1;
-            transition: opacity .4s;
-        }
-        #drag-hint svg { width:16px; height:16px; opacity:.5; }
-
-        /* indicador de ángulo */
-        #angle-badge {
-            position: absolute;
-            top: -2.5rem;
-            right: 0;
-            font-size: .58rem;
-            letter-spacing: .25em;
-            text-transform: uppercase;
-            color: var(--accent);
-        }
-
-        /* línea decorativa izq/der */
+        /* líneas decorativas laterales */
         #viewer-section::before,
         #viewer-section::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            width: clamp(2rem, 8vw, 6rem);
-            height: 1px;
-            background: var(--border);
+            content:'';
+            position:absolute; top:50%;
+            width:clamp(2rem,8vw,5rem); height:1px;
+            background:var(--border);
         }
-        #viewer-section::before { left: var(--gap); }
-        #viewer-section::after  { right: var(--gap); }
-
-        /* texto lateral izquierdo */
-        .viewer-label-left,
-        .viewer-label-right {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            max-width: 160px;
-            pointer-events: none;
+        #viewer-section::before { left:var(--gap); }
+        #viewer-section::after  { right:var(--gap); }
+        #viewer-wrap {
+            position:relative;
+            width:min(65vh,85vw);
+            aspect-ratio:1/1;
+            display:flex; align-items:center; justify-content:center;
         }
-        .viewer-label-left  { left: var(--gap); }
-        .viewer-label-right { right: var(--gap); text-align: right; }
-
-        .vl-tag   { font-size:.55rem; letter-spacing:.38em; text-transform:uppercase; color:var(--accent); margin-bottom:.4rem; }
-        .vl-title { font-family:'Cormorant Garamond',serif; font-weight:300; font-size:1.15rem; line-height:1.2; margin-bottom:.4rem; }
-        .vl-body  { font-size:.68rem; line-height:1.8; color:var(--muted); }
-        .vl-line  { display:block; width:30px; height:1px; background:var(--accent); margin:.6rem 0; }
-        .viewer-label-right .vl-line { margin-left: auto; }
-
+        #viewer-img {
+            width:100%; height:100%;
+            object-fit:contain;
+            user-select:none; -webkit-user-drag:none; pointer-events:none;
+            filter: grayscale(100%);
+        }
+        #drag-hint {
+            position:absolute; bottom:-2.8rem; left:50%; transform:translateX(-50%);
+            display:flex; align-items:center; gap:.5rem;
+            font-size:.6rem; letter-spacing:.28em; text-transform:uppercase;
+            color:var(--off); white-space:nowrap;
+            transition:opacity .4s;
+        }
+        #drag-hint svg { width:16px; height:16px; opacity:.4; }
+        #angle-badge {
+            position:absolute; top:-2.5rem; right:0;
+            font-size:.56rem; letter-spacing:.25em; text-transform:uppercase;
+            color:var(--off);
+        }
+        .viewer-label-left, .viewer-label-right {
+            position:absolute; top:50%; transform:translateY(-50%);
+            max-width:150px; pointer-events:none;
+        }
+        .viewer-label-left  { left:var(--gap); }
+        .viewer-label-right { right:var(--gap); text-align:right; }
+        .vl-tag   { font-size:.54rem; letter-spacing:.38em; text-transform:uppercase; color:var(--off); margin-bottom:.4rem; }
+        .vl-title { font-family:'Bebas Neue',sans-serif; font-size:1.4rem; letter-spacing:.08em; line-height:1.1; margin-bottom:.4rem; color:var(--white); }
+        .vl-body  { font-size:.66rem; line-height:1.8; color:var(--off); }
+        .vl-line  { display:block; width:28px; height:1px; background:rgba(255,255,255,.3); margin:.6rem 0; }
+        .viewer-label-right .vl-line { margin-left:auto; }
         @media(max-width:600px) {
             .viewer-label-left, .viewer-label-right { display:none; }
         }
 
         /* ── PRODUCT DETAIL ── */
         #product-detail {
-            background:var(--white);
+            background:var(--black);
             padding:clamp(4rem,10vw,8rem) var(--gap);
             display:grid; grid-template-columns:1fr 1fr;
             gap:clamp(2rem,6vw,6rem); align-items:start;
             border-top:1px solid var(--border);
         }
-
-        .pd-media {
-            position:sticky; top:100px; aspect-ratio:3/4;
-            background:var(--off); border-radius:var(--radius);
-            overflow:hidden; display:flex; align-items:center; justify-content:center;
-        }
-        .pd-media img { width:100%; height:100%; object-fit:cover; transition:opacity .5s; }
-        .placeholder-img { font-family:'Cormorant Garamond',serif; font-size:1rem; color:var(--muted); letter-spacing:.2em; text-align:center; padding:2rem; }
-
-        /* REGLAS PARA MÓVIL (CORREGIDAS) */
         @media(max-width:700px) {
             #product-detail { grid-template-columns:1fr; }
-            .pd-media {
-                position:relative;
-                top:0;
-                aspect-ratio:1/1;
-                max-height:none;
-            }
+            .pd-media { position:relative; top:0; aspect-ratio:4/3; max-height:60vw; }
         }
-
+        .pd-media {
+            position:sticky; top:100px; aspect-ratio:3/4;
+            background:var(--dark); border-radius:var(--radius);
+            overflow:hidden; display:flex; align-items:center; justify-content:center;
+            border:1px solid var(--border);
+        }
+        .pd-media img {
+            width:100%; height:100%; object-fit:cover; transition:opacity .5s;
+            filter: grayscale(100%);
+        }
+        .placeholder-img { font-family:'Bebas Neue',sans-serif; font-size:1.2rem; color:var(--off); letter-spacing:.2em; text-align:center; padding:2rem; }
         .pd-info  { display:flex; flex-direction:column; gap:2rem; }
-        .pd-brand { font-size:.62rem; letter-spacing:.42em; text-transform:uppercase; color:var(--accent); }
-        .pd-name  { font-family:'Cormorant Garamond',serif; font-weight:300; font-size:clamp(2rem,5vw,3.5rem); line-height:1.05; margin-top:.4rem; }
-        .pd-name em { font-style:italic; color:var(--mint); }
-        .pd-desc  { font-size:.78rem; line-height:1.9; color:var(--muted); }
-
+        .pd-brand { font-size:.6rem; letter-spacing:.42em; text-transform:uppercase; color:var(--off); }
+        .pd-name  { font-family:'Bebas Neue',sans-serif; font-size:clamp(2.5rem,6vw,4.5rem); line-height:.95; letter-spacing:.05em; margin-top:.4rem; color:var(--white); }
+        .pd-desc  { font-size:.76rem; line-height:1.9; color:var(--off); }
         .pd-price     { display:flex; align-items:baseline; gap:.5rem; }
-        .pd-price-num { font-family:'Cormorant Garamond',serif; font-size:2.8rem; font-weight:300; }
-        .pd-price-cur { font-size:.75rem; letter-spacing:.12em; color:var(--muted); }
+        .pd-price-num { font-family:'Bebas Neue',sans-serif; font-size:3rem; letter-spacing:.05em; color:var(--white); }
+        .pd-price-cur { font-size:.72rem; letter-spacing:.12em; color:var(--off); }
         .pd-sep       { width:100%; height:1px; background:var(--border); }
-
-        .sel-label        { font-size:.62rem; letter-spacing:.28em; text-transform:uppercase; color:var(--muted); margin-bottom:.9rem; }
-        .sel-label strong { color:var(--ink); }
-
+        .sel-label        { font-size:.6rem; letter-spacing:.28em; text-transform:uppercase; color:var(--off); margin-bottom:.9rem; }
+        .sel-label strong { color:var(--white); }
         .color-options { display:flex; flex-wrap:wrap; gap:.7rem; }
-        .color-btn { width:34px; height:34px; border-radius:50%; border:2px solid transparent; cursor:none; transition:transform .2s,border-color .2s; position:relative; }
+        .color-btn { width:32px; height:32px; border-radius:50%; border:2px solid transparent; cursor:none; transition:transform .2s,border-color .2s; position:relative; }
         .color-btn:hover { transform:scale(1.12); }
-        .color-btn.active { border-color:var(--ink); }
-        .color-btn::after { content:attr(data-name); position:absolute; bottom:-22px; left:50%; transform:translateX(-50%); font-size:.55rem; letter-spacing:.1em; white-space:nowrap; color:var(--muted); opacity:0; transition:opacity .2s; }
+        .color-btn.active { border-color:var(--white); }
+        .color-btn::after { content:attr(data-name); position:absolute; bottom:-22px; left:50%; transform:translateX(-50%); font-size:.52rem; letter-spacing:.1em; white-space:nowrap; color:var(--off); opacity:0; transition:opacity .2s; }
         .color-btn:hover::after, .color-btn.active::after { opacity:1; }
-
         .size-options { display:flex; flex-wrap:wrap; gap:.6rem; }
-        .size-btn { min-width:46px; height:46px; padding:0 .8rem; border:1px solid var(--border); border-radius:var(--radius); font-size:.72rem; letter-spacing:.15em; text-transform:uppercase; background:transparent; color:var(--muted); cursor:none; transition:all .2s; display:flex; align-items:center; justify-content:center; }
-        .size-btn:hover  { border-color:var(--ink); color:var(--ink); }
-        .size-btn.active { background:var(--ink); color:var(--white); border-color:var(--ink); }
-        .size-btn.agotado { opacity:.3; pointer-events:none; text-decoration:line-through; }
-
-        .btn-wa { display:flex; align-items:center; justify-content:center; gap:.9rem; width:100%; padding:1.1rem 2rem; background:var(--wa); color:#fff; border:none; border-radius:var(--radius); font-family:'DM Sans',sans-serif; font-size:.78rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; text-decoration:none; cursor:none; transition:filter .25s,transform .2s; }
+        .size-btn {
+            min-width:48px; height:48px; padding:0 .8rem;
+            border:1px solid var(--border); border-radius:var(--radius);
+            font-size:.7rem; letter-spacing:.15em; text-transform:uppercase;
+            background:transparent; color:var(--off); cursor:none; transition:all .2s;
+            display:flex; align-items:center; justify-content:center;
+        }
+        .size-btn:hover  { border-color:var(--white); color:var(--white); }
+        .size-btn.active { background:var(--white); color:var(--black); border-color:var(--white); }
+        .size-btn.agotado { opacity:.25; pointer-events:none; text-decoration:line-through; }
+        .btn-wa {
+            display:flex; align-items:center; justify-content:center; gap:.9rem;
+            width:100%; padding:1.1rem 2rem; background:var(--wa); color:#fff;
+            border:none; border-radius:var(--radius);
+            font-family:'DM Sans',sans-serif; font-size:.76rem; font-weight:600;
+            letter-spacing:.18em; text-transform:uppercase; text-decoration:none; cursor:none;
+            transition:filter .25s,transform .2s;
+        }
         .btn-wa:hover { filter:brightness(1.08); transform:translateY(-2px); }
-        .btn-wa svg { width:20px; height:20px; fill:#fff; flex-shrink:0; }
-        .sel-warning { font-size:.68rem; color:#c0392b; letter-spacing:.1em; display:none; margin-top:-.8rem; }
+        .btn-wa svg   { width:20px; height:20px; fill:#fff; flex-shrink:0; }
+        .sel-warning  { font-size:.66rem; color:#ff4444; letter-spacing:.1em; display:none; margin-top:-.8rem; }
 
         /* ── CATÁLOGO ── */
-        #catalogo { background:var(--off); padding:clamp(4rem,10vw,8rem) var(--gap); }
+        #catalogo { background:var(--dark); padding:clamp(4rem,10vw,8rem) var(--gap); }
         .cat-header { display:flex; align-items:baseline; justify-content:space-between; margin-bottom:clamp(2rem,5vw,4rem); flex-wrap:wrap; gap:1rem; }
-        .cat-title    { font-family:'Cormorant Garamond',serif; font-weight:300; font-size:clamp(2rem,5vw,3.2rem); }
-        .cat-title em { font-style:italic; color:var(--accent); }
-        .cat-count    { font-size:.68rem; letter-spacing:.25em; text-transform:uppercase; color:var(--muted); }
-        .cat-grid     { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:1.5rem; }
-
-        .card { background:var(--white); border-radius:var(--radius); overflow:hidden; border:1px solid var(--border); cursor:none; transition:transform .3s,box-shadow .3s; }
-        .card:hover { transform:translateY(-5px); box-shadow:0 16px 40px rgba(0,0,0,.08); }
-        .card-media { aspect-ratio:3/4; background:var(--off); position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center; }
+        .cat-title    { font-family:'Bebas Neue',sans-serif; font-size:clamp(2.5rem,6vw,4rem); letter-spacing:.08em; color:var(--white); }
+        .cat-count    { font-size:.66rem; letter-spacing:.25em; text-transform:uppercase; color:var(--off); }
+        .cat-grid     { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:1rem; }
+        .card { background:var(--card); border-radius:var(--radius); overflow:hidden; border:1px solid var(--border); cursor:none; transition:transform .3s,border-color .3s; }
+        .card:hover { transform:translateY(-4px); border-color:rgba(255,255,255,.15); }
+        .card-media { aspect-ratio:3/4; background:var(--dark); position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center; }
         .card-media img { width:100%; height:100%; object-fit:cover; transition:transform .6s; }
         .card:hover .card-media img { transform:scale(1.04); }
-        .card-media .no-img { font-family:'Cormorant Garamond',serif; font-size:.9rem; color:var(--muted); letter-spacing:.15em; }
-        .card-badge { position:absolute; top:.8rem; left:.8rem; background:var(--ink); color:var(--white); font-size:.55rem; letter-spacing:.2em; text-transform:uppercase; padding:.3rem .7rem; border-radius:2px; }
-        .card-body  { padding:1.2rem 1.4rem 1.5rem; }
-        .card-brand { font-size:.58rem; letter-spacing:.35em; text-transform:uppercase; color:var(--accent); margin-bottom:.3rem; }
-        .card-name  { font-family:'Cormorant Garamond',serif; font-weight:300; font-size:1.25rem; margin-bottom:.5rem; }
-        .card-price { font-size:.82rem; font-weight:500; margin-bottom:1.1rem; }
-        .card-colors { display:flex; gap:.4rem; margin-bottom:1rem; }
-        .card-dot   { width:14px; height:14px; border-radius:50%; border:1px solid rgba(0,0,0,.1); }
-        .card-wa { display:flex; align-items:center; justify-content:center; gap:.6rem; width:100%; padding:.75rem; background:var(--wa); color:#fff; border:none; border-radius:var(--radius); font-family:'DM Sans',sans-serif; font-size:.65rem; font-weight:600; letter-spacing:.16em; text-transform:uppercase; text-decoration:none; cursor:none; transition:filter .2s; }
+        .card-media .no-img { font-family:'Bebas Neue',sans-serif; font-size:.9rem; color:var(--off); letter-spacing:.15em; }
+        .card-badge { position:absolute; top:.7rem; left:.7rem; background:var(--white); color:var(--black); font-size:.52rem; letter-spacing:.2em; text-transform:uppercase; padding:.28rem .65rem; border-radius:2px; font-weight:600; }
+        .card-body  { padding:1.1rem 1.3rem 1.4rem; }
+        .card-brand { font-size:.56rem; letter-spacing:.35em; text-transform:uppercase; color:var(--off); margin-bottom:.3rem; }
+        .card-name  { font-family:'Bebas Neue',sans-serif; font-size:1.3rem; letter-spacing:.06em; margin-bottom:.4rem; color:var(--white); }
+        .card-price { font-size:.8rem; font-weight:500; margin-bottom:1rem; color:var(--white); }
+        .card-colors { display:flex; gap:.4rem; margin-bottom:.9rem; }
+        .card-dot   { width:13px; height:13px; border-radius:50%; border:1px solid rgba(255,255,255,.15); }
+        .card-wa {
+            display:flex; align-items:center; justify-content:center; gap:.6rem;
+            width:100%; padding:.72rem; background:var(--wa); color:#fff;
+            border:none; border-radius:var(--radius);
+            font-family:'DM Sans',sans-serif; font-size:.63rem; font-weight:600;
+            letter-spacing:.16em; text-transform:uppercase; text-decoration:none; cursor:none; transition:filter .2s;
+        }
         .card-wa:hover { filter:brightness(1.08); }
-        .card-wa svg { width:15px; height:15px; fill:#fff; }
+        .card-wa svg { width:14px; height:14px; fill:#fff; }
 
         /* ── FOOTER ── */
-        footer { background:var(--ink); color:var(--white); padding:2.5rem var(--gap); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1.2rem; }
-        .ft-logo    { font-family:'Cormorant Garamond',serif; font-weight:300; font-size:1.05rem; letter-spacing:.4em; text-transform:uppercase; }
-        .ft-logo em { font-style:italic; color:var(--accent); }
-        .ft-copy    { font-size:.62rem; letter-spacing:.14em; color:rgba(255,255,255,.3); }
-        .ft-ig      { font-size:.65rem; letter-spacing:.2em; text-transform:uppercase; color:var(--accent); text-decoration:none; border-bottom:1px solid var(--accent); padding-bottom:2px; transition:opacity .25s; }
+        footer { background:var(--dark); border-top:1px solid var(--border); color:var(--white); padding:2.5rem var(--gap); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1.2rem; }
+        .ft-logo    { font-family:'Bebas Neue',sans-serif; font-size:1.2rem; letter-spacing:.25em; }
+        .ft-logo span { color:var(--off); }
+        .ft-copy    { font-size:.6rem; letter-spacing:.14em; color:rgba(255,255,255,.25); }
+        .ft-ig      { font-size:.63rem; letter-spacing:.2em; text-transform:uppercase; color:var(--white); text-decoration:none; border-bottom:1px solid rgba(255,255,255,.3); padding-bottom:2px; transition:opacity .25s; }
         .ft-ig:hover { opacity:.55; }
-
         @media(max-width:600px) {
-            .cat-grid { grid-template-columns:repeat(2,1fr); gap:.8rem; }
-            .card-body { padding:.9rem 1rem 1.2rem; }
+            .cat-grid { grid-template-columns:repeat(2,1fr); gap:.7rem; }
+            .card-body { padding:.8rem .9rem 1.1rem; }
         }
     </style>
 </head>
@@ -271,26 +233,25 @@
 <div id="cur-r"></div>
 
 <div id="loader">
-    <div class="ld-logo">NØV</div>
+    <div class="ld-logo">BAD BOYS</div>
     <div class="ld-track"><div class="ld-fill" id="ld-fill"></div></div>
     <div class="ld-txt" id="ld-txt">Cargando…</div>
 </div>
-
 <div id="prog"></div>
 
 <header id="header">
-    <a href="#" class="logo">NØV <em>Shop</em></a>
+    <a href="#" class="logo">BAD <span>BOYS</span></a>
     <nav>
         <a href="#product-detail">Producto</a>
         <a href="#catalogo">Catálogo</a>
-        <a href="https://www.instagram.com/nov_shop.ori" target="_blank">Instagram</a>
+        <a href="https://www.instagram.com/bad_.b0ys_" target="_blank">Instagram</a>
     </nav>
 </header>
 
 <section id="hero">
-    <p class="hero-tag">Temporada 2026 — Orizaba, Veracruz</p>
-    <h1 class="hero-h1">Boss<br><em>Mint</em></h1>
-    <p class="hero-sub">Sudadera premium · Edición limitada</p>
+    <p class="hero-tag">Orizaba & Córdoba — Envíos a todo México</p>
+    <h1 class="hero-h1">BAD<br>BOYS</h1>
+    <p class="hero-sub">Viste con carácter · Streetwear Original</p>
     <div class="scroll-hint">
         <span>Arrastra para rotar</span>
         <div class="s-line"></div>
@@ -298,17 +259,16 @@
 </section>
 
 <section id="viewer-section">
-
     <div class="viewer-label-left">
-        <p class="vl-tag">Material</p>
+        <p class="vl-tag">Construcción</p>
         <span class="vl-line"></span>
-        <h3 class="vl-title">Algodón<br>French Terry</h3>
-        <p class="vl-body">380 g/m² · Tacto premium<br>Interior afelpado suave</p>
+        <h3 class="vl-title">100%<br>Algodón</h3>
+        <p class="vl-body">Corte regular fit<br>Tela pesada premium<br>Costura reforzada</p>
     </div>
 
     <div id="viewer-wrap">
         <span id="angle-badge">Vista: Frente</span>
-        <img id="viewer-img" src="boos_frente.png" alt="Sudadera BOSS 360" draggable="false" />
+        <img id="viewer-img" src="badcamisa-removebg-preview.png" alt="Camiseta Bad Boys 360" draggable="false" />
         <div id="drag-hint">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                 <path d="M8 9l-4 4 4 4M16 9l4 4-4 4"/>
@@ -318,12 +278,11 @@
     </div>
 
     <div class="viewer-label-right">
-        <p class="vl-tag">Acabados</p>
+        <p class="vl-tag">Diseño</p>
         <span class="vl-line"></span>
-        <h3 class="vl-title">Detalles<br>de Calidad</h3>
-        <p class="vl-body">Puntas metálicas chapadas<br>Costuras triple aguja<br>Logo bordado en relieve</p>
+        <h3 class="vl-title">Gótico<br>Original</h3>
+        <p class="vl-body">Tipografía exclusiva<br>Serigrafía de alta calidad<br>Diseño Bad Boys</p>
     </div>
-
 </section>
 
 <section id="product-detail">
@@ -331,27 +290,34 @@
         <div class="placeholder-img" id="placeholder-txt">Cargando…</div>
         <img src="" alt="" id="pd-img" style="display:none;width:100%;height:100%;object-fit:cover;" />
     </div>
+
     <div class="pd-info">
         <div>
-            <p class="pd-brand">BOSS — Hugo Boss</p>
-            <h2 class="pd-name">Sudadera<br><em>Mint Collection</em></h2>
-            <p class="pd-desc">Corte oversize con caída perfecta. Capucha ajustable con cordón, canguro frontal y puños acanalados. Construida para durar.</p>
+            <p class="pd-brand">Bad Boys — Original</p>
+            <h2 class="pd-name">Camiseta<br>Bad Boys</h2>
+            <p class="pd-desc">Diseño gótico exclusivo con "BAD" al frente y "BOYS" en la espalda. Serigrafía de alta definición sobre algodón pesado. Hecha para los que visten con carácter.</p>
         </div>
+
         <div class="pd-price">
-            <span class="pd-price-num" id="pd-price-display">$1,850</span>
+            <span class="pd-price-num" id="pd-price-display">$450</span>
             <span class="pd-price-cur">MXN</span>
         </div>
+
         <div class="pd-sep"></div>
+
         <div>
             <p class="sel-label">Color: <strong id="color-selected-name">—</strong></p>
             <div class="color-options" id="color-options"></div>
         </div>
+
         <div>
             <p class="sel-label">Talla: <strong id="size-selected-name">—</strong></p>
             <div class="size-options" id="size-options"></div>
             <p class="sel-warning" id="sel-warning">Selecciona color y talla para continuar</p>
         </div>
+
         <div class="pd-sep"></div>
+
         <a href="#" id="wa-btn" class="btn-wa" target="_blank">
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
@@ -359,62 +325,57 @@
             </svg>
             Pedir por WhatsApp
         </a>
-        <p style="font-size:.62rem;letter-spacing:.12em;color:var(--muted);text-align:center">
-            Envíos a todo México · Pago contra entrega disponible
+        <p style="font-size:.6rem;letter-spacing:.12em;color:var(--off);text-align:center">
+            Entregas en Orizaba y Córdoba · Envíos a toda la República
         </p>
     </div>
 </section>
 
 <section id="catalogo">
     <div class="cat-header">
-        <h2 class="cat-title">Toda la <em>Colección</em></h2>
+        <h2 class="cat-title">Colección</h2>
         <span class="cat-count" id="cat-count"></span>
     </div>
     <div class="cat-grid" id="cat-grid"></div>
 </section>
 
 <footer>
-    <div class="ft-logo">NØV <em>Shop</em></div>
-    <span class="ft-copy">© 2026 NØV Shop — Orizaba, Veracruz</span>
-    <a href="https://www.instagram.com/nov_shop.ori" target="_blank" class="ft-ig">@nov_shop.ori</a>
+    <div class="ft-logo">BAD <span>BOYS</span></div>
+    <span class="ft-copy">© 2025 Bad Boys — Orizaba, Veracruz</span>
+    <a href="https://www.instagram.com/bad_.b0ys_" target="_blank" class="ft-ig">@bad_.b0ys_</a>
 </footer>
 
 <script>
-
     /* ==============================================
        CONFIGURACIÓN — EDITA AQUÍ
     ============================================== */
+    var WA_NUMERO = '529511234567'; /* ★ NÚMERO WHATSAPP DE BAD BOYS ★ */
 
-    var WA_NUMERO = '529511234567'; // TU NÚMERO WHATSAPP
-
-    /* Imágenes del visor 360° en orden de rotación:
-       frente → derecha → atras → izquierda → (vuelve a frente)  */
+    /* ★ IMÁGENES DEL VISOR 360° (USAN LAS DE PREVIEW SIN FONDO) ★ */
     var FRAMES_360 = [
-        { src: 'boos_frente.png',    label: 'Frente'    },
-        { src: 'boos_derecha.png',   label: 'Lateral'   },
-        { src: 'boos_atras.png',     label: 'Espalda'   },
-        { src: 'boos_izquierda.png', label: 'Lateral'   }
+        { src: 'badcamisa-removebg-preview.png',       label: 'Frente'  },
+        { src: 'camisaDerecha-removebg-preview.png',   label: 'Lateral' },
+        { src: 'boyscamisaa-removebg-preview.png',     label: 'Espalda' },
+        { src: 'camisaIzquierda-removebg-preview.png', label: 'Lateral' }
     ];
 
     var PRODUCTOS = [
         {
             id: 1,
-            nombre: 'Sudadera Boss Mint',
-            marca: 'BOSS',
-            descripcion: 'Corte oversize premium en algodón French Terry 380 g/m². Capucha ajustable, canguro frontal y logo bordado en relieve.',
-            precio: 1850,
-            badge: 'Nuevo',
+            nombre: 'Camiseta Bad Boys',
+            marca: 'Bad Boys',
+            descripcion: 'Diseño gótico exclusivo sobre algodón pesado. Serigrafía de alta definición.',
+            precio: 450,
+            badge: 'Original',
             colores: [
-                { nombre: 'Verde Menta',  hex: '#A8C4B5', imagen: 'boos_frente.png' },
-                { nombre: 'Negro',        hex: '#1a1a1a',  imagen: 'boos_frente.png' },
-                { nombre: 'Blanco Hueso', hex: '#F0ECE3',  imagen: 'boos_frente.png' }
+                /* ★ IMAGEN DEL PRODUCTO Y CATÁLOGO (USA LA ORIGINAL CON FONDO) ★ */
+                { nombre: 'Negro', hex: '#111111', imagen: 'badcamisa.png' }
             ],
             tallas: [
-                { nombre: 'S',   agotado: false },
-                { nombre: 'M',   agotado: false },
-                { nombre: 'L',   agotado: false },
-                { nombre: 'XL',  agotado: false },
-                { nombre: 'XXL', agotado: true  }
+                { nombre: 'CH', agotado: false },
+                { nombre: 'M',  agotado: false },
+                { nombre: 'G',  agotado: false },
+                { nombre: 'XL', agotado: false }
             ],
             waNumero: WA_NUMERO
         }
@@ -423,7 +384,6 @@
     /* ==============================================
        NO EDITES DEBAJO DE ESTA LÍNEA
     ============================================== */
-
     gsap.registerPlugin(ScrollTrigger);
 
     /* ── Cursor ── */
@@ -433,65 +393,55 @@
     document.addEventListener('mousemove', function(e){ mx=e.clientX; my=e.clientY; });
     (function loop(){
         rx += (mx-rx)*.13; ry += (my-ry)*.13;
-        cur.style.transform  = 'translate('+(mx-4.5)+'px,'+(my-4.5)+'px)';
-        curR.style.transform = 'translate('+(rx-17)+'px,'+(ry-17)+'px)';
+        cur.style.transform  = 'translate('+(mx-4)+'px,'+(my-4)+'px)';
+        curR.style.transform = 'translate('+(rx-16)+'px,'+(ry-16)+'px)';
         requestAnimationFrame(loop);
     })();
 
-    /* ── Header scroll ── */
     window.addEventListener('scroll', function(){
         document.getElementById('header').classList.toggle('scrolled', window.scrollY > 60);
     });
 
-    /* ── Progress bar ── */
     ScrollTrigger.create({
         trigger:'body', start:'top top', end:'bottom bottom',
         onUpdate: function(s){ document.getElementById('prog').style.width = (s.progress*100)+'%'; }
     });
 
-    /* ══════════════════════════════════════
-       VISOR 360° — DRAG INTERACTIVO
-    ══════════════════════════════════════ */
-    var viewerImg   = document.getElementById('viewer-img');
-    var angleBadge  = document.getElementById('angle-badge');
-    var dragHint    = document.getElementById('drag-hint');
-    var viewerWrap  = document.getElementById('viewer-wrap');
+    /* ── Visor 360° ── */
+    var viewerImg  = document.getElementById('viewer-img');
+    var angleBadge = document.getElementById('angle-badge');
+    var dragHint   = document.getElementById('drag-hint');
+    var viewerWrap = document.getElementById('viewer-wrap');
 
-    var totalFrames = FRAMES_360.length;
+    var totalFrames  = FRAMES_360.length;
     var currentFrame = 0;
     var isDragging   = false;
     var dragStartX   = 0;
     var dragAccum    = 0;
-    var sensitivity  = 60; // px por frame — baja = más sensible
+    var sensitivity  = 60;
 
-    /* Precarga todas las imágenes */
-    var preloaded = [];
+    /* Precarga + loader */
     var loaded = 0;
-    var loader  = document.getElementById('loader');
-    var ldFill  = document.getElementById('ld-fill');
-    var ldTxt   = document.getElementById('ld-txt');
+    var ldFill = document.getElementById('ld-fill');
+    var ldTxt  = document.getElementById('ld-txt');
+    var loader = document.getElementById('loader');
 
     FRAMES_360.forEach(function(f, i){
         var img = new Image();
-        img.onload = function(){
+        img.onload = img.onerror = function(){
             loaded++;
-            ldFill.style.width = Math.round(loaded / totalFrames * 100) + '%';
-            ldTxt.textContent  = 'Cargando imágenes... ' + loaded + '/' + totalFrames;
-            if(loaded === totalFrames) onAllLoaded();
-        };
-        img.onerror = function(){
-            loaded++;
+            ldFill.style.width = Math.round(loaded/totalFrames*100)+'%';
+            ldTxt.textContent  = 'Cargando... '+loaded+'/'+totalFrames;
             if(loaded === totalFrames) onAllLoaded();
         };
         img.src = f.src;
-        preloaded[i] = img;
     });
 
     function onAllLoaded(){
         ldFill.style.width = '100%';
         ldTxt.textContent  = 'Listo';
         setTimeout(function(){
-            gsap.to(loader, { opacity:0, duration:.65, ease:'power2.inOut',
+            gsap.to(loader,{ opacity:0, duration:.65, ease:'power2.inOut',
                 onComplete: function(){ loader.style.display='none'; initAll(); }
             });
         }, 350);
@@ -505,89 +455,52 @@
 
     /* Mouse drag */
     viewerWrap.addEventListener('mousedown', function(e){
-        isDragging  = true;
-        dragStartX  = e.clientX;
-        dragAccum   = 0;
-        curR.style.width = curR.style.height = '56px';
+        isDragging = true; dragStartX = e.clientX; dragAccum = 0;
         dragHint.style.opacity = '0';
         e.preventDefault();
     });
-
     document.addEventListener('mousemove', function(e){
         if(!isDragging) return;
-        var delta = e.clientX - dragStartX;
-        dragAccum += delta;
+        dragAccum += e.clientX - dragStartX;
         dragStartX = e.clientX;
         var steps = Math.floor(dragAccum / sensitivity);
-        if(steps !== 0){
-            showFrame(currentFrame + steps);
-            dragAccum -= steps * sensitivity;
-        }
+        if(steps !== 0){ showFrame(currentFrame + steps); dragAccum -= steps * sensitivity; }
     });
+    document.addEventListener('mouseup', function(){ isDragging = false; });
 
-    document.addEventListener('mouseup', function(){
-        if(!isDragging) return;
-        isDragging = false;
-        curR.style.width = curR.style.height = '34px';
-    });
-
-    /* Touch drag (móvil) */
+    /* Touch drag */
     viewerWrap.addEventListener('touchstart', function(e){
-        isDragging = true;
-        dragStartX = e.touches[0].clientX;
-        dragAccum  = 0;
+        isDragging = true; dragStartX = e.touches[0].clientX; dragAccum = 0;
         dragHint.style.opacity = '0';
-    }, { passive:true });
-
+    },{ passive:true });
     viewerWrap.addEventListener('touchmove', function(e){
         if(!isDragging) return;
-        var delta = e.touches[0].clientX - dragStartX;
-        dragAccum += delta;
+        dragAccum += e.touches[0].clientX - dragStartX;
         dragStartX = e.touches[0].clientX;
         var steps = Math.floor(dragAccum / sensitivity);
-        if(steps !== 0){
-            showFrame(currentFrame + steps);
-            dragAccum -= steps * sensitivity;
-        }
-    }, { passive:true });
+        if(steps !== 0){ showFrame(currentFrame + steps); dragAccum -= steps * sensitivity; }
+    },{ passive:true });
+    viewerWrap.addEventListener('touchend', function(){ isDragging = false; });
 
-    viewerWrap.addEventListener('touchend', function(){
-        isDragging = false;
-    });
+    viewerWrap.addEventListener('mouseenter', function(){ curR.style.width=curR.style.height='52px'; });
+    viewerWrap.addEventListener('mouseleave', function(){ curR.style.width=curR.style.height='32px'; isDragging=false; });
 
-    /* Cursor grab en el visor */
-    viewerWrap.style.cursor = 'none';
-    viewerWrap.addEventListener('mouseenter', function(){
-        curR.style.width = curR.style.height = '56px';
-    });
-    viewerWrap.addEventListener('mouseleave', function(){
-        curR.style.width = curR.style.height = '34px';
-        isDragging = false;
-    });
-
-    /* Auto-spin suave al cargar (da una vuelta completa en 2s para mostrar que es 360) */
+    /* Auto spin demo */
     function autoSpin(){
-        var frame = 0;
-        var total = totalFrames;
-        var interval = setInterval(function(){
-            frame++;
-            showFrame(frame);
-            if(frame >= total){
-                clearInterval(interval);
-                showFrame(0); // regresa al frente
-            }
+        var f = 0;
+        var iv = setInterval(function(){
+            f++; showFrame(f);
+            if(f >= totalFrames){ clearInterval(iv); showFrame(0); }
         }, 500);
     }
 
-    /* ══════════════════════════════════════
-       INIT GENERAL
-    ══════════════════════════════════════ */
+    /* ── Init ── */
     function initAll(){
         initHero();
         initLabelsAnim();
         buildDetail();
         buildCatalogo();
-        setTimeout(autoSpin, 600); // demo spin al iniciar
+        setTimeout(autoSpin, 600);
     }
 
     function initHero(){
@@ -599,18 +512,9 @@
     }
 
     function initLabelsAnim(){
-        gsap.from('.viewer-label-left', {
-            x:-30, opacity:0, duration:1, ease:'power3.out',
-            scrollTrigger:{ trigger:'#viewer-section', start:'top 70%' }
-        });
-        gsap.from('.viewer-label-right', {
-            x:30, opacity:0, duration:1, ease:'power3.out',
-            scrollTrigger:{ trigger:'#viewer-section', start:'top 70%' }
-        });
-        gsap.from('#viewer-wrap', {
-            scale:.92, opacity:0, duration:1, ease:'power3.out',
-            scrollTrigger:{ trigger:'#viewer-section', start:'top 70%' }
-        });
+        gsap.from('.viewer-label-left',  { x:-30, opacity:0, duration:1, ease:'power3.out', scrollTrigger:{ trigger:'#viewer-section', start:'top 70%' } });
+        gsap.from('.viewer-label-right', { x:30,  opacity:0, duration:1, ease:'power3.out', scrollTrigger:{ trigger:'#viewer-section', start:'top 70%' } });
+        gsap.from('#viewer-wrap',        { scale:.92, opacity:0, duration:1, ease:'power3.out', scrollTrigger:{ trigger:'#viewer-section', start:'top 70%' } });
     }
 
     /* ── Product detail ── */
@@ -631,7 +535,7 @@
 
         var colBox = document.getElementById('color-options');
         colBox.innerHTML = '';
-        p.colores.forEach(function(c, i){
+        p.colores.forEach(function(c,i){
             var btn = document.createElement('button');
             btn.className = 'color-btn';
             btn.style.background = c.hex;
@@ -642,18 +546,18 @@
                 btn.classList.add('active');
                 selectedColor = c;
                 document.getElementById('color-selected-name').textContent = c.nombre;
-                pdImg.style.opacity = '0';
-                setTimeout(function(){ pdImg.src = c.imagen; pdImg.style.opacity = '1'; }, 250);
+                pdImg.style.opacity='0';
+                setTimeout(function(){ pdImg.src=c.imagen; pdImg.style.opacity='1'; },250);
             });
             colBox.appendChild(btn);
-            if(i === 0) btn.click();
+            if(i===0) btn.click();
         });
 
         var sizeBox = document.getElementById('size-options');
         sizeBox.innerHTML = '';
         p.tallas.forEach(function(t){
             var btn = document.createElement('button');
-            btn.className = 'size-btn' + (t.agotado ? ' agotado' : '');
+            btn.className = 'size-btn'+(t.agotado?' agotado':'');
             btn.textContent = t.nombre;
             btn.addEventListener('click', function(){
                 document.querySelectorAll('.size-btn:not(.agotado)').forEach(function(b){ b.classList.remove('active'); });
@@ -667,27 +571,29 @@
         var waBtn    = document.getElementById('wa-btn');
         var newWaBtn = waBtn.cloneNode(true);
         waBtn.parentNode.replaceChild(newWaBtn, waBtn);
+
         newWaBtn.addEventListener('click', function(e){
             e.preventDefault();
             if(!selectedColor || !selectedSize){
-                document.getElementById('sel-warning').style.display = 'block';
+                document.getElementById('sel-warning').style.display='block';
                 return;
             }
-            document.getElementById('sel-warning').style.display = 'none';
+            document.getElementById('sel-warning').style.display='none';
+
             var msg = [
-                'Hola NOV Shop!',
+                'Hola Bad Boys!',
                 '',
-                'Quiero pedir el siguiente producto:',
+                'Quiero pedir:',
                 '',
                 p.nombre,
-                'Marca: ' + p.marca,
-                'Color: ' + selectedColor.nombre,
-                'Talla: ' + selectedSize,
-                'Precio: $' + p.precio.toLocaleString('es-MX') + ' MXN',
+                'Color: '+selectedColor.nombre,
+                'Talla: '+selectedSize,
+                'Precio: $'+p.precio.toLocaleString('es-MX')+' MXN',
                 '',
                 'Tienen disponibilidad?'
             ].join('\n');
-            window.open('https://wa.me/'+p.waNumero+'?text='+encodeURIComponent(msg), '_blank');
+
+            window.open('https://wa.me/'+p.waNumero+'?text='+encodeURIComponent(msg),'_blank');
         });
     }
 
@@ -695,19 +601,21 @@
     function buildCatalogo(){
         var grid  = document.getElementById('cat-grid');
         var count = document.getElementById('cat-count');
+
         grid.innerHTML = '';
-        count.textContent = PRODUCTOS.length + (PRODUCTOS.length === 1 ? ' producto' : ' productos');
+        count.textContent = PRODUCTOS.length+(PRODUCTOS.length===1?' producto':' productos');
 
         PRODUCTOS.forEach(function(p){
             var card = document.createElement('div');
             card.className = 'card';
 
-            var badgeHtml = p.badge ? '<span class="card-badge">'+p.badge+'</span>' : '';
+            var badgeHtml = p.badge?'<span class="card-badge">'+p.badge+'</span>':'';
             var imgHtml   = p.colores[0].imagen
-                ? '<img src="'+p.colores[0].imagen+'" alt="'+p.nombre+'" loading="lazy" />'
-                : '<span class="no-img">Sin imagen</span>';
+                ?'<img src="'+p.colores[0].imagen+'" alt="'+p.nombre+'" loading="lazy" />'
+                :'<span class="no-img">Sin imagen</span>';
+
             var dotsHtml  = p.colores.map(function(c){
-                return '<div class="card-dot" style="background:'+c.hex+'" title="'+c.nombre+'"></div>';
+                return '<div class="card-dot" style="background:'+c.hex+';border-color:rgba(255,255,255,.2)" title="'+c.nombre+'"></div>';
             }).join('');
 
             card.innerHTML =
@@ -726,28 +634,24 @@
             card.querySelector('.card-wa').addEventListener('click', function(e){
                 e.preventDefault();
                 var msg = [
-                    'Hola NOV Shop!',
+                    'Hola Bad Boys!',
                     '',
-                    'Me interesa este producto:',
+                    'Me interesa: '+p.nombre,
+                    'Precio: $'+p.precio.toLocaleString('es-MX')+' MXN',
                     '',
-                    p.nombre,
-                    'Marca: ' + p.marca,
-                    'Precio: $' + p.precio.toLocaleString('es-MX') + ' MXN',
-                    '',
-                    'Que colores y tallas tienen disponibles?'
+                    'Que tallas tienen disponibles?'
                 ].join('\n');
-                window.open('https://wa.me/'+p.waNumero+'?text='+encodeURIComponent(msg), '_blank');
+                window.open('https://wa.me/'+p.waNumero+'?text='+encodeURIComponent(msg),'_blank');
             });
 
             grid.appendChild(card);
         });
 
-        gsap.from('.card', {
+        gsap.from('.card',{
             y:40, opacity:0, duration:.6, ease:'power2.out', stagger:.1,
             scrollTrigger:{ trigger:'#catalogo', start:'top 75%' }
         });
     }
-
 </script>
 </body>
 </html>
