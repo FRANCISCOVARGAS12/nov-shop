@@ -69,9 +69,13 @@
         ══════════════════════════════════════ */
         #viewer-section {
             height:100vh;
-            display:flex; align-items:center; justify-content:center;
+            display:flex;
+            align-items:center;
+            justify-content:center;
             background:var(--dark);
-            position:relative; overflow:hidden;
+            position:relative;
+            overflow:hidden;
+            flex-direction: row;
         }
         /* líneas decorativas laterales */
         #viewer-section::before,
@@ -83,18 +87,21 @@
         }
         #viewer-section::before { left:var(--gap); }
         #viewer-section::after  { right:var(--gap); }
+
         #viewer-wrap {
             position:relative;
             width:min(65vh,85vw);
-            aspect-ratio:1/1;
             display:flex; align-items:center; justify-content:center;
+            flex-shrink: 0;
         }
+
         #viewer-img {
             width:100%; height:100%;
             object-fit:contain;
             user-select:none; -webkit-user-drag:none; pointer-events:none;
             filter: grayscale(100%);
         }
+
         #drag-hint {
             position:absolute; bottom:-2.8rem; left:50%; transform:translateX(-50%);
             display:flex; align-items:center; gap:.5rem;
@@ -119,9 +126,6 @@
         .vl-body  { font-size:.66rem; line-height:1.8; color:var(--off); }
         .vl-line  { display:block; width:28px; height:1px; background:rgba(255,255,255,.3); margin:.6rem 0; }
         .viewer-label-right .vl-line { margin-left:auto; }
-        @media(max-width:600px) {
-            .viewer-label-left, .viewer-label-right { display:none; }
-        }
 
         /* ── PRODUCT DETAIL ── */
         #product-detail {
@@ -221,7 +225,50 @@
         .ft-copy    { font-size:.6rem; letter-spacing:.14em; color:rgba(255,255,255,.25); }
         .ft-ig      { font-size:.63rem; letter-spacing:.2em; text-transform:uppercase; color:var(--white); text-decoration:none; border-bottom:1px solid rgba(255,255,255,.3); padding-bottom:2px; transition:opacity .25s; }
         .ft-ig:hover { opacity:.55; }
+
+        /* ── RESPONSIVE PARA CELULARES Y TABLETS ── */
         @media(max-width:600px) {
+            /* Viewer labels visibles y apilados */
+            .viewer-label-left, .viewer-label-right {
+                display: block;
+                position: relative;
+                top: auto; left: auto; right: auto;
+                transform: none;
+                width: 100%;
+                max-width: 100%;
+                pointer-events: auto;
+                text-align: center;
+                padding: 1.5rem var(--gap);
+                margin: 0;
+            }
+            .vl-line, .viewer-label-right .vl-line {
+                margin: .6rem auto;
+            }
+
+            /* Ajustes de la sección del visor 360 */
+            #viewer-section {
+                height: auto;
+                min-height: 100vh;
+                flex-direction: column;
+                justify-content: flex-start;
+                padding-top: 5rem;
+                padding-bottom: 2rem;
+                overflow: visible;
+            }
+
+            #viewer-wrap {
+                width: 90vw;
+                height: auto;
+                max-width: 400px;
+                margin: 2rem 0;
+            }
+
+            #viewer-img {
+                object-fit: contain;
+                height: auto;
+            }
+
+            /* Ajustes del catálogo */
             .cat-grid { grid-template-columns:repeat(2,1fr); gap:.7rem; }
             .card-body { padding:.8rem .9rem 1.1rem; }
         }
@@ -351,7 +398,6 @@
     ============================================== */
     var WA_NUMERO = '529511234567'; /* ★ NÚMERO WHATSAPP DE BAD BOYS ★ */
 
-    /* ★ IMÁGENES DEL VISOR 360° (USAN LAS DE PREVIEW SIN FONDO) ★ */
     var FRAMES_360 = [
         { src: 'badcamisa-removebg-preview.png',       label: 'Frente'  },
         { src: 'camisaDerecha-removebg-preview.png',   label: 'Lateral' },
@@ -368,7 +414,6 @@
             precio: 450,
             badge: 'Original',
             colores: [
-                /* ★ IMAGEN DEL PRODUCTO Y CATÁLOGO (USA LA ORIGINAL CON FONDO) ★ */
                 { nombre: 'Negro', hex: '#111111', imagen: 'badcamisa.png' }
             ],
             tallas: [
