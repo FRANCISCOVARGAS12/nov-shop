@@ -135,10 +135,6 @@
             gap:clamp(2rem,6vw,6rem); align-items:start;
             border-top:1px solid var(--border);
         }
-        @media(max-width:700px) {
-            #product-detail { grid-template-columns:1fr; }
-            .pd-media { position:relative; top:0; aspect-ratio:4/3; max-height:60vw; }
-        }
         .pd-media {
             position:sticky; top:100px; aspect-ratio:3/4;
             background:var(--dark); border-radius:var(--radius);
@@ -226,7 +222,20 @@
         .ft-ig      { font-size:.63rem; letter-spacing:.2em; text-transform:uppercase; color:var(--white); text-decoration:none; border-bottom:1px solid rgba(255,255,255,.3); padding-bottom:2px; transition:opacity .25s; }
         .ft-ig:hover { opacity:.55; }
 
-        /* ── RESPONSIVE PARA CELULARES Y TABLETS ── */
+        /* ══════════════════════════════════════════════════════
+           RESPONSIVE PARA CELULARES Y TABLETS (MÁXIMA PRIORIDAD)
+        ══════════════════════════════════════════════════════ */
+        @media(max-width:700px) {
+            /* ARREGLO DE LA IMAGEN PEGAJOSA (STICKY) */
+            #product-detail { grid-template-columns:1fr; }
+            .pd-media {
+                position: relative !important; /* Forza a que deje de seguirte hacia abajo */
+                top: auto !important;
+                aspect-ratio: 1/1; /* Más cuadrada en celular para que no ocupe toda la pantalla */
+                margin-bottom: 2rem;
+            }
+        }
+
         @media(max-width:600px) {
             /* Viewer labels visibles y apilados */
             .viewer-label-left, .viewer-label-right {
@@ -260,12 +269,22 @@
                 width: 90vw;
                 height: auto;
                 max-width: 400px;
-                margin: 2rem 0;
+                margin: 2.5rem 0;
             }
 
             #viewer-img {
                 object-fit: contain;
                 height: auto;
+            }
+
+            /* ARREGLO DEL TEXTO "VISTA: FRENTE" */
+            #angle-badge {
+                top: -1.8rem;
+                right: auto;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 100%;
+                text-align: center;
             }
 
             /* Ajustes del catálogo */
