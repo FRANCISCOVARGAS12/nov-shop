@@ -61,9 +61,19 @@
             100% { transform:scaleY(0); transform-origin:bottom; }
         }
 
-        /* VISOR 360 */
-        #viewer-section { height:100vh; display:flex; align-items:center; justify-content:center; background:var(--dark); position:relative; overflow:hidden; }
-        #viewer-section::before, #viewer-section::after { content:''; position:absolute; top:50%; width:clamp(2rem,8vw,5rem); height:1px; background:var(--border); }
+        /* ══════════════════════════════════════
+           VISOR 360°
+        ══════════════════════════════════════ */
+        #viewer-section {
+            height:100vh;
+            display:flex; align-items:center; justify-content:center;
+            background:var(--dark);
+            position:relative; overflow:hidden;
+        }
+        #viewer-section::before, #viewer-section::after {
+            content:''; position:absolute; top:50%;
+            width:clamp(2rem,8vw,5rem); height:1px; background:var(--border);
+        }
         #viewer-section::before { left:var(--gap); }
         #viewer-section::after  { right:var(--gap); }
 
@@ -74,9 +84,14 @@
         #drag-hint svg { width:16px; height:16px; opacity:.4; }
         #angle-badge { position:absolute; top:-2.5rem; right:0; font-size:.56rem; letter-spacing:.25em; text-transform:uppercase; color:var(--off); }
 
-        .viewer-label-left, .viewer-label-right { position:absolute; top:50%; transform:translateY(-50%); max-width:150px; pointer-events:none; }
+        /* Labels laterales — solo en desktop */
+        .viewer-label-left, .viewer-label-right {
+            position:absolute; top:50%; transform:translateY(-50%);
+            max-width:150px; pointer-events:none;
+        }
         .viewer-label-left  { left:var(--gap); }
         .viewer-label-right { right:var(--gap); text-align:right; }
+
         .vl-tag   { font-size:.54rem; letter-spacing:.38em; text-transform:uppercase; color:var(--off); margin-bottom:.4rem; }
         .vl-title { font-family:'Bebas Neue',sans-serif; font-size:1.4rem; letter-spacing:.08em; line-height:1.1; margin-bottom:.4rem; color:var(--white); }
         .vl-body  { font-size:.66rem; line-height:1.8; color:var(--off); }
@@ -84,18 +99,41 @@
         .viewer-label-right .vl-line { margin-left:auto; }
 
         /* ══════════════════════════════════════
-           PRODUCT DETAIL — ARREGLO MÓVIL TOTAL
+           LABELS MÓVIL — debajo del visor
+        ══════════════════════════════════════ */
+        #viewer-labels-mobile {
+            display:none; /* oculto en desktop */
+            background:var(--dark);
+            border-top:1px solid var(--border);
+            border-bottom:1px solid var(--border);
+            padding:2.5rem var(--gap);
+            gap:0;
+        }
+
+        .mobile-label-item {
+            flex:1;
+            text-align:center;
+            padding:0 1rem;
+        }
+        .mobile-label-item:first-child {
+            border-right:1px solid var(--border);
+        }
+        .mobile-label-item .vl-line {
+            margin:0.6rem auto;
+        }
+
+        /* ══════════════════════════════════════
+           PRODUCT DETAIL
         ══════════════════════════════════════ */
         #product-detail {
             background:var(--black);
             padding:clamp(3rem,8vw,7rem) var(--gap);
             display:flex;
-            flex-direction:column; /* SIEMPRE en columna — imagen arriba, info abajo */
+            flex-direction:column;
             gap:2rem;
             border-top:1px solid var(--border);
         }
 
-        /* En desktop se pone en dos columnas */
         @media(min-width:700px){
             #product-detail {
                 display:grid;
@@ -103,15 +141,11 @@
                 gap:clamp(2rem,6vw,6rem);
                 align-items:start;
             }
-            .pd-media {
-                position:sticky;
-                top:100px;
-            }
+            .pd-media { position:sticky; top:100px; }
         }
 
-        /* La imagen — NUNCA sticky en móvil */
         .pd-media {
-            position:relative; /* NUNCA sticky en móvil */
+            position:relative;
             top:auto;
             width:100%;
             max-width:420px;
@@ -120,16 +154,13 @@
             background:var(--dark);
             border-radius:var(--radius);
             overflow:hidden;
-            display:flex;
-            align-items:center;
-            justify-content:center;
+            display:flex; align-items:center; justify-content:center;
             border:1px solid var(--border);
         }
         .pd-media img { width:100%; height:100%; object-fit:contain; transition:opacity .5s; filter:grayscale(100%); }
         .placeholder-img { font-family:'Bebas Neue',sans-serif; font-size:1.2rem; color:var(--off); letter-spacing:.2em; text-align:center; padding:2rem; }
 
-        /* Info del producto */
-        .pd-info { display:flex; flex-direction:column; gap:1.6rem; }
+        .pd-info  { display:flex; flex-direction:column; gap:1.6rem; }
         .pd-brand { font-size:.6rem; letter-spacing:.42em; text-transform:uppercase; color:var(--off); }
         .pd-name  { font-family:'Bebas Neue',sans-serif; font-size:clamp(2.2rem,6vw,4.5rem); line-height:.95; letter-spacing:.05em; margin-top:.3rem; color:var(--white); }
         .pd-desc  { font-size:.75rem; line-height:1.9; color:var(--off); }
@@ -167,8 +198,6 @@
         .cat-count  { font-size:.66rem; letter-spacing:.25em; text-transform:uppercase; color:var(--off); }
         .cat-grid   { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:1rem; }
 
-        @media(max-width:500px){ .cat-grid { grid-template-columns:repeat(2,1fr); gap:.7rem; } }
-
         .card { background:var(--card); border-radius:var(--radius); overflow:hidden; border:1px solid var(--border); cursor:none; transition:transform .3s,border-color .3s; }
         .card:hover { transform:translateY(-4px); border-color:rgba(255,255,255,.15); }
         .card-media { aspect-ratio:1/1; background:var(--dark); position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center; }
@@ -194,9 +223,19 @@
         .ft-ig      { font-size:.63rem; letter-spacing:.2em; text-transform:uppercase; color:var(--white); text-decoration:none; border-bottom:1px solid rgba(255,255,255,.3); padding-bottom:2px; transition:opacity .25s; }
         .ft-ig:hover { opacity:.55; }
 
-        /* Ocultar labels del visor en móvil */
+        /* ══════════════════════════════════════
+           RESPONSIVE MÓVIL
+        ══════════════════════════════════════ */
         @media(max-width:600px){
+            /* Ocultar labels laterales del visor en móvil */
             .viewer-label-left, .viewer-label-right { display:none; }
+
+            /* Mostrar la sección de labels debajo del visor */
+            #viewer-labels-mobile { display:flex; }
+
+            /* Catálogo en 2 columnas */
+            .cat-grid { grid-template-columns:repeat(2,1fr); gap:.7rem; }
+            .card-body { padding:.8rem .9rem 1.1rem; }
         }
     </style>
 </head>
@@ -222,6 +261,7 @@
     </nav>
 </header>
 
+<!-- HERO -->
 <section id="hero">
     <p class="hero-tag">Orizaba & Córdoba — Envíos a todo México</p>
     <h1 class="hero-h1">BAD<br>BOYS</h1>
@@ -232,7 +272,9 @@
     </div>
 </section>
 
+<!-- VISOR 360° -->
 <section id="viewer-section">
+    <!-- Labels laterales — solo desktop -->
     <div class="viewer-label-left">
         <p class="vl-tag">Construcción</p>
         <span class="vl-line"></span>
@@ -259,6 +301,23 @@
     </div>
 </section>
 
+<!-- LABELS MÓVIL — aparecen debajo del visor solo en celular -->
+<div id="viewer-labels-mobile">
+    <div class="mobile-label-item">
+        <p class="vl-tag">Construcción</p>
+        <span class="vl-line"></span>
+        <h3 class="vl-title">100%<br>Algodón</h3>
+        <p class="vl-body">Corte regular fit<br>Tela pesada premium<br>Costura reforzada</p>
+    </div>
+    <div class="mobile-label-item">
+        <p class="vl-tag">Diseño</p>
+        <span class="vl-line"></span>
+        <h3 class="vl-title">Gótico<br>Original</h3>
+        <p class="vl-body">Tipografía exclusiva<br>Serigrafía premium<br>Diseño Bad Boys</p>
+    </div>
+</div>
+
+<!-- PRODUCT DETAIL -->
 <section id="product-detail">
     <div class="pd-media" id="pd-media">
         <div class="placeholder-img" id="placeholder-txt">Cargando…</div>
@@ -305,6 +364,7 @@
     </div>
 </section>
 
+<!-- CATÁLOGO -->
 <section id="catalogo">
     <div class="cat-header">
         <h2 class="cat-title">Colección</h2>
@@ -323,11 +383,8 @@
     /* ==============================================
        CONFIGURACIÓN
     ============================================== */
-
-    /* ★ NÚMERO WHATSAPP DE BAD BOYS ★ */
     var WA_NUMERO = '522721460334';
 
-    /* ★ IMÁGENES DEL VISOR 360° ★ */
     var FRAMES_360 = [
         { src: 'badcamisa-removebg-preview.png',       label: 'Frente'  },
         { src: 'camisaDerecha-removebg-preview.png',   label: 'Lateral' },
@@ -335,7 +392,6 @@
         { src: 'camisaIzquierda-removebg-preview.png', label: 'Lateral' }
     ];
 
-    /* ★ PRODUCTOS ★ */
     var PRODUCTOS = [
         {
             id: 1,
@@ -358,17 +414,16 @@
     ];
 
     /* ==============================================
-       LÓGICA — NO EDITAR
+       LÓGICA
     ============================================== */
     gsap.registerPlugin(ScrollTrigger);
 
-    /* Cursor */
     var cur  = document.getElementById('cur');
     var curR = document.getElementById('cur-r');
     var mx=0,my=0,rx=0,ry=0;
     document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;});
     (function loop(){
-        rx+=(mx-rx)*.13;ry+=(my-ry)*.13;
+        rx+=(mx-rx)*.13; ry+=(my-ry)*.13;
         cur.style.transform='translate('+(mx-4)+'px,'+(my-4)+'px)';
         curR.style.transform='translate('+(rx-16)+'px,'+(ry-16)+'px)';
         requestAnimationFrame(loop);
@@ -388,7 +443,7 @@
     var angleBadge = document.getElementById('angle-badge');
     var dragHint   = document.getElementById('drag-hint');
     var viewerWrap = document.getElementById('viewer-wrap');
-    var totalFrames=FRAMES_360.length,currentFrame=0,isDragging=false,dragStartX=0,dragAccum=0,sensitivity=60;
+    var totalFrames=FRAMES_360.length, currentFrame=0, isDragging=false, dragStartX=0, dragAccum=0, sensitivity=60;
 
     var loaded=0;
     var ldFill=document.getElementById('ld-fill');
@@ -407,8 +462,7 @@
     });
 
     function onAllLoaded(){
-        ldFill.style.width='100%';
-        ldTxt.textContent='Listo';
+        ldFill.style.width='100%'; ldTxt.textContent='Listo';
         setTimeout(function(){
             gsap.to(loader,{opacity:0,duration:.65,ease:'power2.inOut',
                 onComplete:function(){loader.style.display='none';initAll();}
@@ -425,7 +479,7 @@
     viewerWrap.addEventListener('mousedown',function(e){isDragging=true;dragStartX=e.clientX;dragAccum=0;dragHint.style.opacity='0';e.preventDefault();});
     document.addEventListener('mousemove',function(e){
         if(!isDragging)return;
-        dragAccum+=e.clientX-dragStartX;dragStartX=e.clientX;
+        dragAccum+=e.clientX-dragStartX; dragStartX=e.clientX;
         var steps=Math.floor(dragAccum/sensitivity);
         if(steps!==0){showFrame(currentFrame+steps);dragAccum-=steps*sensitivity;}
     });
@@ -434,7 +488,7 @@
     viewerWrap.addEventListener('touchstart',function(e){isDragging=true;dragStartX=e.touches[0].clientX;dragAccum=0;dragHint.style.opacity='0';},{passive:true});
     viewerWrap.addEventListener('touchmove',function(e){
         if(!isDragging)return;
-        dragAccum+=e.touches[0].clientX-dragStartX;dragStartX=e.touches[0].clientX;
+        dragAccum+=e.touches[0].clientX-dragStartX; dragStartX=e.touches[0].clientX;
         var steps=Math.floor(dragAccum/sensitivity);
         if(steps!==0){showFrame(currentFrame+steps);dragAccum-=steps*sensitivity;}
     },{passive:true});
@@ -443,13 +497,12 @@
     viewerWrap.addEventListener('mouseleave',function(){curR.style.width=curR.style.height='32px';isDragging=false;});
 
     function autoSpin(){
-        var f=0,iv=setInterval(function(){
-            f++;showFrame(f);
+        var f=0, iv=setInterval(function(){
+            f++; showFrame(f);
             if(f>=totalFrames){clearInterval(iv);showFrame(0);}
         },500);
     }
 
-    /* Init */
     function initAll(){
         initHero();
         initLabelsAnim();
@@ -470,9 +523,10 @@
         gsap.from('.viewer-label-left', {x:-30,opacity:0,duration:1,ease:'power3.out',scrollTrigger:{trigger:'#viewer-section',start:'top 70%'}});
         gsap.from('.viewer-label-right',{x:30, opacity:0,duration:1,ease:'power3.out',scrollTrigger:{trigger:'#viewer-section',start:'top 70%'}});
         gsap.from('#viewer-wrap',       {scale:.92,opacity:0,duration:1,ease:'power3.out',scrollTrigger:{trigger:'#viewer-section',start:'top 70%'}});
+        gsap.from('#viewer-labels-mobile .mobile-label-item',{y:20,opacity:0,duration:.8,ease:'power2.out',stagger:.15,scrollTrigger:{trigger:'#viewer-labels-mobile',start:'top 80%'}});
     }
 
-    var selectedColor=null,selectedSize=null;
+    var selectedColor=null, selectedSize=null;
 
     function buildDetail(){
         var p=PRODUCTOS[0];
@@ -486,7 +540,6 @@
 
         document.getElementById('pd-price-display').textContent='$'+p.precio.toLocaleString('es-MX');
 
-        /* Colores */
         var colBox=document.getElementById('color-options');
         colBox.innerHTML='';
         p.colores.forEach(function(c,i){
@@ -507,7 +560,6 @@
             if(i===0)btn.click();
         });
 
-        /* Tallas */
         var sizeBox=document.getElementById('size-options');
         sizeBox.innerHTML='';
         p.tallas.forEach(function(t){
@@ -523,11 +575,9 @@
             sizeBox.appendChild(btn);
         });
 
-        /* Botón WhatsApp — mensaje completo con talla y color */
         var waBtn=document.getElementById('wa-btn');
         var newBtn=waBtn.cloneNode(true);
         waBtn.parentNode.replaceChild(newBtn,waBtn);
-
         newBtn.addEventListener('click',function(e){
             e.preventDefault();
             if(!selectedColor||!selectedSize){
@@ -535,8 +585,6 @@
                 return;
             }
             document.getElementById('sel-warning').style.display='none';
-
-            /* ★ MENSAJE AUTOMÁTICO QUE SE MANDA A WHATSAPP ★ */
             var msg=[
                 'Hola Bad Boys! 👋',
                 '',
@@ -549,7 +597,6 @@
                 '',
                 'Tienen disponibilidad? 🙏'
             ].join('\n');
-
             window.open('https://wa.me/'+p.waNumero+'?text='+encodeURIComponent(msg),'_blank');
         });
     }
@@ -563,7 +610,6 @@
         PRODUCTOS.forEach(function(p){
             var card=document.createElement('div');
             card.className='card';
-
             var badgeHtml=p.badge?'<span class="card-badge">'+p.badge+'</span>':'';
             var imgHtml=p.colores[0].imagen
                 ?'<img src="'+p.colores[0].imagen+'" alt="'+p.nombre+'" loading="lazy" />'
